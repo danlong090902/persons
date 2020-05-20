@@ -1,0 +1,13 @@
+# GET http://localhost:3001/api/notes/
+
+GET http://localhost:3001/api/notes
+
+# DELETE http://localhost:3001/api/notes/5ec4c51ce1312d2eb48be5ba
+
+# PUT http://localhost:3001/api/notes/5ec49b8fba69e6256ce08631
+# Content-Type: application/json
+
+# {
+#   "content":"VS CODE IS 777",
+#   "important":true
+# }
