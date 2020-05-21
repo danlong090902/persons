@@ -18,16 +18,15 @@ const App = () => {
   console.log('render', notes.length, 'notes')
 
   const toggleImportanceOf = id => {
-    const url = `http://localhost:3001/notes/${id}`
+
     const note = notes.find(n => n.id === id)
     const changedNote = { ...note, important: !note.important }
-
     noteService
       .update(id, changedNote)
       .then(response => {
         console.log(response.data)
         console.log(notes.map(note => note.id !== Number(id) ? note : response.data))
-        setNotes(notes.map(note => note.id !== Number(id) ? note : response.data))
+        setNotes(notes.map(note => note.id !== id ? note : response.data))
       })
   }
 
@@ -42,6 +41,7 @@ const App = () => {
     noteService
       .create(noteObject)
       .then(response => {
+        console.log(response)
         setNotes(notes.concat(response.data))
         setNewNote('')
       })

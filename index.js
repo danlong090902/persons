@@ -63,25 +63,17 @@ app.put('/api/notes/:id', (request, response, next) => {
 app.post('/api/notes', (request, response, next) => {
   const body = request.body
 
-  if (body.content === undefined) {
-    return response.status(400).json({ error: 'content missing' })
-  }
-
   const note = new Note({
     content: body.content,
     important: body.important || false,
     date: new Date(),
   })
 
-  note
-    .save()
+  note.save()
     .then(savedNote => {
-      savedNote.toJSON()
+      response.json(savedNote.toJSON())
     })
-    .then(saveAndFormattedNote => {
-      response.json(saveAndFormattedNote)
-    })
-    .catch(err => next(err))
+    .catch(error => next(error))
 })
 
 
