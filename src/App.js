@@ -23,7 +23,7 @@ const App = () => {
     const changedNote = { ...note, important: !note.important }
 
     noteService
-      .update(changedNote)
+      .update(id, changedNote)
       .then(response => {
         console.log(response.data)
         console.log(notes.map(note => note.id !== Number(id) ? note : response.data))
